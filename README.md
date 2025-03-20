@@ -4,7 +4,7 @@ Start a specified automated test suite.
 
 # Usage
 ## Step 1: Prepare values for setting up your variables for Actions
-- credentials (username and password for a service account)
+- credentials (username and password for a service account or an API Key)
 - instance URLs for your dev, test, prod, etc. environments
 - sys_id or scope for your app
 - sys_id for your ATF Test Suite
@@ -15,6 +15,7 @@ On GitHub, go in your repository settings, click on the secret _Secrets_ and cre
 Create secrets called 
 - `NOW_USERNAME`
 - `NOW_PASSWORD`
+- `NOW_APIKEY`
 - `NOW_INSTALL_INSTANCE` only the **domain** string is required from the instance URL, for example https://**domain**.service-now.com
 
 ## Step 3: Example Workflow Template
@@ -34,6 +35,7 @@ https://github.com/ServiceNow/sncicd_githubworkflow
   env:
     nowUsername: ${{ secrets.NOW_USERNAME }}
     nowPassword: ${{ secrets.NOW_PASSWORD }}
+    nowApikey:  ${{ secrets.NOW_APIKEY }}
     nowInstallInstance: ${{ secrets.NOW_INSTALL_INSTANCE }}
 ```
 Inputs:
