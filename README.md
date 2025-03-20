@@ -47,8 +47,9 @@ Inputs:
 - **testSuiteName** - Required if testSuiteSysId is not specified. The name of the test suite to run. This value is located in the Test [sys_atf_test_suite] table.
 
 Environment variable should be set up in the Step 1
-- nowUsername - Username to ServiceNow instance
-- nowPassword - Password to ServiceNow instance
+- nowUsername - Username for ServiceNow Basic Authentication
+- nowPassword - Password for ServiceNow Basic Authentication
+- nowApikey - API Key for ServiceNow Authentication
 - nowInstallInstance - ServiceNow instance on which the tests are run
 
 # Contributing
