@@ -78,7 +78,7 @@ export default class App {
         if (!this.props.nowInstallInstance) throw new Error(Errors.INCORRECT_CONFIG)
 
         const params: string = this.buildParams(options)
-        return `https://${this.props.nowInstallInstance}.service-now.com/api/sn_cicd/testsuite/run?${params}`
+        return `https://${this.props.nowInstallInstance}/api/sn_cicd/testsuite/run?${params}`
     }
 
     /**

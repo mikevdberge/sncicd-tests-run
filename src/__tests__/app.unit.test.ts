@@ -10,7 +10,7 @@ import {
 } from '../App.types'
 
 const getFullUrl = (props: AppProps, inputs: any) =>
-    `https://${props.nowInstallInstance}.service-now.com/api/sn_cicd/testsuite/run?test_suite_sys_id=${inputs.test_suite_sys_id}&test_suite_name=${inputs.test_suite_name}&browser_name=${inputs.browser_name}&browser_version=${inputs.browser_version}&os_name=${inputs.os_name}&os_version=${inputs.os_version}`
+    `https://${props.nowInstallInstance}/api/sn_cicd/testsuite/run?test_suite_sys_id=${inputs.test_suite_sys_id}&test_suite_name=${inputs.test_suite_name}&browser_name=${inputs.browser_name}&browser_version=${inputs.browser_version}&os_name=${inputs.os_name}&os_version=${inputs.os_version}`
 
 describe(`App lib`, () => {
     let props: AppProps
