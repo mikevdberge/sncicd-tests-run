@@ -10,11 +10,13 @@ export const run = (): void => {
         const errors: string[] = []
         const { nowUsername = '', nowPassword = '', nowApikey = '', nowInstallInstance = '' } = process.env
 
-        if (!nowUsername) {
-            errors.push(Errors.USERNAME)
-        }
-        if (!nowPassword) {
-            errors.push(Errors.PASSWORD)
+        if (!nowApikey) {
+            if (!nowUsername) {
+                errors.push(Errors.USERNAME)
+            }
+            if (!nowPassword) {
+                errors.push(Errors.PASSWORD)
+            }
         }
         if (!nowInstallInstance) {
             errors.push(Errors.INSTALL_INSTANCE)

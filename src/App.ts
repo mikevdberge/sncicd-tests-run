@@ -4,7 +4,7 @@ import axios from 'axios'
 import {
     RequestResult,
     AppProps,
-    axiosConfigtype,
+    axiosConfig,
     Errors,
     RequestResponse,
     ResponseStatus,
@@ -17,7 +17,7 @@ export default class App {
     sleepTime = 3000
     user: User
     apikey: string
-    config: axiosConfigtype
+    config: axiosConfig
     props: AppProps
     errCodeMessages: any = {
         401: 'The user credentials are incorrect.',
@@ -53,6 +53,7 @@ export default class App {
                 'x-sn-apikey': this.apikey,
             }
         }
+        // if an API Key is provided we don't set basic authentication
         if (!this.apikey){
             this.config.auth = this.user;
         }
