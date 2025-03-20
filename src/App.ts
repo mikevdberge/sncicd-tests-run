@@ -46,19 +46,26 @@ export default class App {
             password: props.password,
         }
         this.apikey = props.apikey
-        this.config = {
-            headers: {
-                'User-Agent': 'sncicd_extint_github',
-                Accept: 'application/json',
-                'x-sn-apikey': this.apikey,
+
+        // Setting headers with Axios global configuration
+        axios.defaults.headers.common['User-Agent'] = 'sncicd_extint_github'
+        axios.defaults.headers.common['Accept'] = 'application/json'
+
+        this.config = {}
+        if (this.apikey) {
+            this.config = {
+                headers: {
+                    'x-sn-apikey': this.apikey,
+                }
             }
         }
-        // if an API Key is provided we don't set basic authentication
+
+        // if no API Key is provided we set the basic authentication property
         if (!this.apikey){
             this.config.auth = this.user;
         }
-    }
 
+    }
     buildParams(options: RequestOptions): string {
         return (
             Object.keys(options)

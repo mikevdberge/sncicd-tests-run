@@ -82,12 +82,11 @@ export enum ResponseStatus {
     Canceled = 4,
 }
 
-interface _axiosConfig {
-    headers: {
-        'User-Agent': string,
-        Accept: string,
-        'x-sn-apikey': string,
+export interface axiosConfig {
+    headers?: {
+        'User-Agent'?: string,
+        Accept?: string,
+        'x-sn-apikey'?: string,
     };
-    auth: User ;
+    auth?: User ;
 }
-export type axiosConfig = PartialBy<_axiosConfig, 'auth'>
