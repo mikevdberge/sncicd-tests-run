@@ -9,6 +9,8 @@ describe('Install app', () => {
         password: 'test',
         scope: '',
         nowInstallInstance: 'test',
+        nowFullInstance: 'test',
+        apikey: 'now_123456789',
         username: 'test',
     }
     beforeEach(() => {

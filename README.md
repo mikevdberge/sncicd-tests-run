@@ -51,7 +51,7 @@ Environment variable should be set up in the Step 1
 - nowUsername - Username for ServiceNow Basic Authentication
 - nowPassword - Password for ServiceNow Basic Authentication
 - nowApikey - API Key for ServiceNow Authentication
-- nowInstallInstance - ServiceNow instance on which the tests are run. Expects only the instance name and not the full FQDN
+- nowInstallInstance - **Legacy** ServiceNow instance on which the tests are run. Expects only the instance name and not the full FQDN
 - nowFullInstance - ServiceNow instance on which the tests are run. Expects the full FQDN
 
 # Contributing
