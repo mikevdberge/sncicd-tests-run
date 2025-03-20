@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/ServiceNow/sncicd-tests-run.git"
   },
-  "author": "ServiceNow",
+  "author": "QHSE Professionals",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ServiceNow/sncicd-tests-run/issues"

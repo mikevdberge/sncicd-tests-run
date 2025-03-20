@@ -1,6 +1,6 @@
 name: 'ServiceNow CI/CD Run ATF Test Suite'
 description: 'Start a specified automated test suite.'
-author: "ServiceNow"
+author: "QHSE Professionals"
 inputs:
   browserName:
     description: "Name of the browser to use to run the client test. "
