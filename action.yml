@@ -1,4 +1,4 @@
-name: 'ServiceNow CI/CD Run ATF Test Suite'
+name: 'QHSE Professionals CI/CD Run ATF Test Suite'
 description: 'Start a specified automated test suite.'
 author: "QHSE Professionals"
 inputs:
