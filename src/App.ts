@@ -83,10 +83,10 @@ export default class App {
      * @returns string  Url to API
      */
     buildRequestUrl(options: RequestOptions): string {
-        if (!this.props.nowInstallInstance) throw new Error(Errors.INCORRECT_CONFIG)
+        if (!this.props.instance) throw new Error(Errors.INCORRECT_CONFIG)
 
         const params: string = this.buildParams(options)
-        return `https://${this.props.nowInstallInstance}/api/sn_cicd/testsuite/run?${params}`
+        return `https://${this.props.instance}/api/sn_cicd/testsuite/run?${params}`
     }
 
     /**

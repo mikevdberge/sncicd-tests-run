@@ -7,7 +7,7 @@ export interface User {
 }
 
 export interface AppProps extends User {
-    nowInstallInstance: string;
+    instance: string;
     apikey: string;
 }
 
