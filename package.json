@@ -19,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/ServiceNow/sncicd-tests-run/issues"
   },
-  "type": "module" ,
   "homepage": "https://github.com/ServiceNow/sncicd-tests-run#readme",
   "devDependencies": {
     "@types/jest": "^29.5.14",
