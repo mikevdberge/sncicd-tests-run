@@ -16,6 +16,7 @@ import {
 export default class App {
     sleepTime = 3000
     user: User
+    apikey: string
     config: axiosConfig
     props: AppProps
     errCodeMessages: any = {
@@ -44,10 +45,12 @@ export default class App {
             username: props.username,
             password: props.password,
         }
+        this.apikey = props.apikey
         this.config = {
             headers: {
                 'User-Agent': 'sncicd_extint_github',
                 Accept: 'application/json',
+                'x-sn-apikey': this.apikey,
             },
             auth: this.user,
         }
@@ -89,7 +92,7 @@ export default class App {
             const url: string = this.buildRequestUrl(inputs)
             const response: RequestResponse = await axios.post(url, {}, this.config)
             await this.printStatus(response.data.result)
-        } catch (error) {
+        } catch (error: any) {
             let message: string
             if (error.response && error.response.status) {
                 if (this.errCodeMessages[error.response.status]) {

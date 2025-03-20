@@ -1,6 +1,8 @@
 # Ignore any generated TypeScript -> JavaScript files
 .github/actions/**/*.js
 
+node_modules/*
+
 # Logs
 logs
 *.log
@@ -13,3 +15,6 @@ npm-debug.log*
 
 # Optional eslint cache
 .eslintcache
+
+# Mac crap
+.DS_Store

@@ -1,4 +1,4 @@
-// import * as github from '@actions/github'
+//import * as github from '@actions/github'
 import * as core from '@actions/core'
 import { AppProps, Errors } from './src/App.types'
 import App from './src/App'
@@ -8,7 +8,7 @@ export const configMsg = '. Configure Github secrets please'
 export const run = (): void => {
     try {
         const errors: string[] = []
-        const { nowUsername = '', nowPassword = '', nowInstallInstance = '' } = process.env
+        const { nowUsername = '', nowPassword = '', nowApikey = '', nowInstallInstance = '' } = process.env
 
         if (!nowUsername) {
             errors.push(Errors.USERNAME)
@@ -26,6 +26,7 @@ export const run = (): void => {
                 nowInstallInstance,
                 username: nowUsername,
                 password: nowPassword,
+                apikey: nowApikey,
             }
             const app = new App(props)
 
@@ -33,7 +34,7 @@ export const run = (): void => {
                 core.setFailed(error.message)
             })
         }
-    } catch (error) {
+    } catch (error: any) {
         core.setFailed(error.message)
     }
 }

@@ -5,6 +5,7 @@ export interface User {
 
 export interface AppProps extends User {
     nowInstallInstance: string;
+    apikey: string;
 }
 
 export interface ErrorResult {
@@ -82,6 +83,7 @@ export interface axiosConfig {
     headers: {
         'User-Agent': string,
         Accept: string,
+        'x-sn-apikey': string,
     };
     auth: User;
 }

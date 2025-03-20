@@ -47,7 +47,7 @@ describe(`App lib`, () => {
     })
 
     beforeEach(() => {
-        props = { password: 'test', nowInstallInstance: 'test', username: 'test' }
+        props = { password: 'test', nowInstallInstance: 'test', username: 'test', apikey: 'test' }
     })
     describe(`builds request url`, () => {
         it(`with correct params`, () => {
@@ -108,6 +108,7 @@ describe(`App lib`, () => {
                     headers: {
                         'User-Agent': 'sncicd_extint_github',
                         Accept: 'application/json',
+                        'x-sn-apikey': props.apikey,                        
                     },
                 }
 
@@ -129,6 +130,7 @@ describe(`App lib`, () => {
                     headers: {
                         'User-Agent': 'sncicd_extint_github',
                         Accept: 'application/json',
+                        'x-sn-apikey': props.apikey,                            
                     },
                 }
 
