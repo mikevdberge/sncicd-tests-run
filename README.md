@@ -17,6 +17,8 @@ Create secrets called
 - `NOW_PASSWORD`
 - `NOW_APIKEY`
 - `NOW_INSTALL_INSTANCE` only the **domain** string is required from the instance URL, for example https://**domain**.service-now.com
+- `NOW_FULL_INSTANCE` the full fqdn of the instance is required, for example **domain.service-now.com**
+
 
 ## Step 3: Example Workflow Template
 https://github.com/ServiceNow/sncicd_githubworkflow
@@ -51,8 +53,8 @@ Environment variable should be set up in the Step 1
 - nowUsername - Username for ServiceNow Basic Authentication
 - nowPassword - Password for ServiceNow Basic Authentication
 - nowApikey - API Key for ServiceNow Authentication
-- nowInstallInstance - **Legacy** ServiceNow instance on which the tests are run. Expects only the instance name and not the full FQDN
-- nowFullInstance - ServiceNow instance on which the tests are run. Expects the full FQDN
+- nowInstallInstance - **Legacy** ServiceNow instance on which the tests are run. Expects only the instance domain name.
+- nowFullInstance - ServiceNow instance on which the tests are run. Expects the full FQDN domain.service-now.com
 
 # Contributing
 
