@@ -4,7 +4,7 @@ import axios from 'axios'
 import {
     RequestResult,
     AppProps,
-    axiosConfig,
+    axiosConfigtype,
     Errors,
     RequestResponse,
     ResponseStatus,
@@ -17,7 +17,7 @@ export default class App {
     sleepTime = 3000
     user: User
     apikey: string
-    config: axiosConfig
+    config: axiosConfigtype
     props: AppProps
     errCodeMessages: any = {
         401: 'The user credentials are incorrect.',
@@ -51,8 +51,10 @@ export default class App {
                 'User-Agent': 'sncicd_extint_github',
                 Accept: 'application/json',
                 'x-sn-apikey': this.apikey,
-            },
-            auth: this.user,
+            }
+        }
+        if (!this.apikey){
+            this.config.auth = this.user;
         }
     }
 
