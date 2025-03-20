@@ -1,6 +1,6 @@
 {
   "name": "sncicd-tests-run",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Start a specified automated test suite.",
   "main": "index.ts",
   "scripts": {

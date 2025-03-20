@@ -37,6 +37,7 @@ https://github.com/ServiceNow/sncicd_githubworkflow
     nowPassword: ${{ secrets.NOW_PASSWORD }}
     nowApikey:  ${{ secrets.NOW_APIKEY }}
     nowInstallInstance: ${{ secrets.NOW_INSTALL_INSTANCE }}
+    nowFullInstance: ${{ secrets.NOW_FULL_INSTANCE }}
 ```
 Inputs:
 - **browserName** - Name of the browser to use to run the client test. 
@@ -50,7 +51,8 @@ Environment variable should be set up in the Step 1
 - nowUsername - Username for ServiceNow Basic Authentication
 - nowPassword - Password for ServiceNow Basic Authentication
 - nowApikey - API Key for ServiceNow Authentication
-- nowInstallInstance - ServiceNow instance on which the tests are run
+- nowInstallInstance - ServiceNow instance on which the tests are run. Expects only the instance name and not the full FQDN
+- nowFullInstance - ServiceNow instance on which the tests are run. Expects the full FQDN
 
 # Contributing
 

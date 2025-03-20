@@ -9,7 +9,7 @@ export const run = (): void => {
     let instance
     try {
         const errors: string[] = []
-        const { nowUsername = '', nowPassword = '', nowApikey = '', nowInstallInstance = '', nowInstance = '' } = process.env
+        const { nowUsername = '', nowPassword = '', nowApikey = '', nowInstallInstance = '', nowFullInstance = '' } = process.env
 
         if (!nowApikey) {
             if (!nowUsername) {
@@ -19,7 +19,7 @@ export const run = (): void => {
                 errors.push(Errors.PASSWORD)
             }
         }
-        if (!nowInstallInstance && !nowInstance) {
+        if (nowInstallInstance === '' && nowFullInstance === '') {
             errors.push(Errors.INSTALL_INSTANCE)
         }
         if (errors.length) {
@@ -28,7 +28,7 @@ export const run = (): void => {
             if (nowInstallInstance) {
                 instance = nowInstallInstance + '.service-now.com'
             } else {
-                instance = nowInstance
+                instance = nowFullInstance
             }
             const props: AppProps = {
                 instance,

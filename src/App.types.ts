@@ -22,7 +22,7 @@ export interface ErrorResult {
 export enum Errors {
     USERNAME = 'nowUsername is not set',
     PASSWORD = 'nowPassword is not set',
-    INSTALL_INSTANCE = 'nowInstallInstance is not set',
+    INSTALL_INSTANCE = 'nowInstallInstance or nowFullInstance is not set',
     SUITE_SYS_ID_OR_NAME = 'Set testSuiteSysId or testSuiteName please',
     INCORRECT_CONFIG = 'Configuration is incorrect',
     CANCELLED = 'Canceled',
