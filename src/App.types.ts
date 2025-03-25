@@ -1,6 +1,6 @@
 export interface User {
-    username?: string | undefined;
-    password?: string | undefined;
+    username: string;
+    password: string;
 }
 
 export interface AppProps extends User {
