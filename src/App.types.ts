@@ -6,6 +6,8 @@ export interface User {
 export interface AppProps extends User {
     instance: string;
     apikey: string;
+    keyid: string;
+    hmacsecret: string;
 }
 
 export interface ErrorResult {
@@ -84,6 +86,7 @@ export interface axiosConfig {
         'User-Agent'?: string,
         Accept?: string,
         'x-sn-apikey'?: string,
+        'x-sn-hmac-signature-256'?: string,
     };
     auth?: User ;
 }

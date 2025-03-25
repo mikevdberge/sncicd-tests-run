@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import axios from 'axios'
+import crypto from 'node:crypto'
 
 import {
     RequestResult,
@@ -17,6 +18,9 @@ export default class App {
     sleepTime = 3000
     user: User
     apikey: string
+    keyid: string
+    hmacsecret: string
+    hmactoken: string
     config: axiosConfig
     props: AppProps
     errCodeMessages: any = {
@@ -39,6 +43,14 @@ export default class App {
         test_suite_name: 'Name of the test suite',
     }
 
+    // Create HMAC token
+    hmac = (text:string, secret:string) => {
+        const hmac = crypto.createHmac('sha256', secret)
+        hmac.update(text)
+        const hmacDigest = hmac.digest('base64')
+        return hmacDigest
+    }
+
     constructor(props: AppProps) {
         this.props = props
         this.user = {
@@ -46,6 +58,17 @@ export default class App {
             password: props.password,
         }
         this.apikey = props.apikey
+
+        this.hmacsecret = props.hmacsecret
+        this.keyid = props.keyid
+        this.hmactoken = ''
+
+        // Generating the ServiceNow HMAC header value for GET requests
+        if (this.hmacsecret) {
+            const body = '{"":""}'      
+            const token = this.hmac(body, this.hmacsecret)
+            this.hmactoken = 'KEYID='+this.keyid+',SIGNATURE='+token
+        }
 
         // Setting headers with Axios global configuration
         axios.defaults.headers.common['User-Agent'] = 'sncicd_extint_github'
@@ -59,7 +82,14 @@ export default class App {
                 }
             }
         }
+        if (this.hmactoken) {
 
+            this.config = {
+                headers: {
+                    'x-sn-hmac-signature-256': this.hmactoken,
+                }
+            }
+        }
         // if no API Key is provided we set the basic authentication property
         if (!this.apikey){
             this.config.auth = this.user;
