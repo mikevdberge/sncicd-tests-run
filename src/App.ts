@@ -21,6 +21,7 @@ export default class App {
     keyid: string | undefined
     hmacsecret: string | undefined
     hmactoken: string | undefined
+    body: string
     config: axiosConfig
     props: AppProps
     errCodeMessages: any = {
@@ -60,11 +61,11 @@ export default class App {
         this.apikey = props.apikey
         this.hmacsecret = props.hmacsecret
         this.keyid = props.keyid
+        this.body = '{"":""}' 
 
         // Generating the ServiceNow HMAC header value for GET requests
         if (this.hmacsecret) {
-            const body = '{"":""}'      
-            const token = this.hmac(body, this.hmacsecret)
+            const token = this.hmac(this.body, this.hmacsecret)
             this.hmactoken = 'KEYID='+this.keyid+',SIGNATURE='+token
         }
 
@@ -79,15 +80,16 @@ export default class App {
                     'x-sn-apikey': this.apikey,
                 }
             }
+            axios.defaults.headers.common['x-sn-apikey'] = this.apikey;            
         }
         console.log('Token: ' + this.hmactoken)
         if (this.hmactoken) {
-            console.log('We have a HMAC Token setting header value')
             this.config = {
                 headers: {
                     'x-sn-hmac-signature-256': this.hmactoken,
                 }
             }
+            axios.defaults.headers.common['x-sn-hmac-signature-256'] = this.hmactoken;            
         }
         // if no API Key or HMAC Token is provided we set the basic authentication property
         if (!this.apikey && !this.hmactoken){
@@ -179,7 +181,8 @@ export default class App {
 
         // Recursion to check the status of the request
         if (+result.status < ResponseStatus.Successful) {
-            const response: RequestResponse = await axios.get(result.links.progress.url, this.config)
+            const response: RequestResponse = await axios.get(result.links.progress.url,{
+                data: this.body})
             // Throttling
             await this.sleep(this.sleepTime)
             // Call itself if the request in the running or pending state
