@@ -11,7 +11,7 @@ export const run = (): void => {
         const errors: string[] = []
         const { nowUsername = '', nowPassword = '', nowApikey = '', nowHMACSecret = '', nowKeyID = '', nowInstallInstance = '', nowFullInstance = '' } = process.env
 
-        if (!nowApikey) {
+        if (!nowApikey && !nowHMACSecret) {
             if (!nowUsername) {
                 errors.push(Errors.USERNAME)
             }
