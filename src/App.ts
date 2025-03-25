@@ -17,10 +17,10 @@ import {
 export default class App {
     sleepTime = 3000
     user: User
-    apikey: string
-    keyid: string
-    hmacsecret: string
-    hmactoken: string
+    apikey: string | undefined
+    keyid: string | undefined
+    hmacsecret: string | undefined
+    hmactoken: string | undefined
     config: axiosConfig
     props: AppProps
     errCodeMessages: any = {
@@ -61,7 +61,7 @@ export default class App {
 
         this.hmacsecret = props.hmacsecret
         this.keyid = props.keyid
-        this.hmactoken = ''
+        //this.hmactoken = ''
 
         // Generating the ServiceNow HMAC header value for GET requests
         if (this.hmacsecret) {
@@ -90,8 +90,8 @@ export default class App {
                 }
             }
         }
-        // if no API Key is provided we set the basic authentication property
-        if (!this.apikey){
+        // if no API Key or HMAC Token is provided we set the basic authentication property
+        if (!this.apikey || !this.hmactoken){
             this.config.auth = this.user;
         }
 
