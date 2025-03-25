@@ -27,8 +27,8 @@ const snHeader = {'x-sn-hmac-signature-256': snToken}
 console.log('Token: '+ snToken)
 
 // Target website URL
-//const targetUrl = 'https://'+instance+'.service-now.com/api/now/table/incident?sysparm_limit=1';
 const targetUrl = 'https://'+instance+'/api/sn_cicd/testsuite/run?test_suite_sys_id='+testsuitsysid;
+const targetUrl2 = 'https://'+instance+'/api/now/table/incident?sysparm_limit=1';
 console.log('Target URL: '+targetUrl);
 
 // https://janmolak.com/node-js-axios-behind-corporate-proxies-8b17a6f31f9d
@@ -51,8 +51,24 @@ const axiosClient = axios.create({
 });
 
 
-const res = await axiosClient.post(targetUrl,{
+let res = await axiosClient.post(targetUrl,{
     "":""
+    })
+.then(function (response) {
+    // handle success
+    console.log('Status: ' + response.status);
+    console.log('Body: ' + beautify(response.data,null,2,100 ));    
+  })
+  .catch(function (error) {
+    // handle error
+    console.log('Error: ' + error);
+  })
+  .finally(function () {
+    // always executed
+  });
+
+res = await axiosClient.get(targetUrl2,{
+    data: body
     })
 .then(function (response) {
     // handle success
