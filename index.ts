@@ -11,14 +11,6 @@ export const run = (): void => {
         const errors: string[] = []
         const { nowUsername = '', nowPassword = '', nowApikey = '', nowHMACSecret = '', nowKeyID = '', nowInstallInstance = '', nowFullInstance = '' } = process.env
 
-        // if (!nowApikey && !nowHMACSecret) {
-        //     if (!nowUsername) {
-        //         errors.push(Errors.USERNAME)
-        //     }
-        //     if (!nowPassword) {
-        //         errors.push(Errors.PASSWORD)
-        //     }
-        // }
         if (nowInstallInstance === '' && nowFullInstance === '') {
             errors.push(Errors.INSTALL_INSTANCE)
         }
