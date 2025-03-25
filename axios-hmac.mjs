@@ -1,8 +1,3 @@
-// node axios-hmac.mjs -i ingcd -s 2x35kgbzhc9a9zm0pknis79sd0oh9bvo6mnm -k MyHMACSecret
-// node axios-hmac.mjs -i dev285185 -s 2x35kgbzhc9a9zm0pknis79sd0oh9bvo6mnm -k HMAC_Key
-// node axios-hmac.mjs -i cicdazure1 -s 2x35kgbzhc9a9zm0pknis79sd0oh9bvo6mnm -k HMAC_Secret
-
-
 import crypto from 'node:crypto'
 import axios from 'axios';
 import * as tunnel from 'tunnel';
@@ -13,6 +8,7 @@ const argv = minimist(process.argv.slice(2));
 const instance = argv['i']
 const secret = argv['s']
 const keyId = argv['k']
+const testsuitsysid = argv['t']
 
 // Create HMAC token
 const hmac = (text, secret) => {
@@ -28,9 +24,12 @@ const token = hmac(body, secret)
 const snToken = 'KEYID='+keyId+',SIGNATURE='+token
 
 const snHeader = {'x-sn-hmac-signature-256': snToken}
+console.log('Token: '+ snToken)
 
 // Target website URL
-const targetUrl = 'https://'+instance+'.service-now.com/api/now/table/incident?sysparm_limit=1';
+//const targetUrl = 'https://'+instance+'.service-now.com/api/now/table/incident?sysparm_limit=1';
+const targetUrl = 'https://'+instance+'/api/sn_cicd/testsuite/run?test_suite_sys_id='+testsuitsysid;
+console.log('Target URL: '+targetUrl);
 
 // https://janmolak.com/node-js-axios-behind-corporate-proxies-8b17a6f31f9d
 // Proxy configuration
@@ -51,8 +50,9 @@ const axiosClient = axios.create({
     proxy: false,    
 });
 
-const res = await axiosClient.get(targetUrl,{
-    data: body
+
+const res = await axiosClient.post(targetUrl,{
+    "":""
     })
 .then(function (response) {
     // handle success

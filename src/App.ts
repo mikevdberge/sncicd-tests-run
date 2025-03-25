@@ -48,7 +48,7 @@ export default class App {
         const hmac = crypto.createHmac('sha256', secret)
         hmac.update(text)
         const hmacDigest = hmac.digest('base64')
-        return hmacDigest
+        return hmacDigest   
     }
 
     constructor(props: AppProps) {
@@ -129,7 +129,7 @@ export default class App {
             const inputs: RequestOptions = this.getInputVariables()
 
             const url: string = this.buildRequestUrl(inputs)
-            const response: RequestResponse = await axios.post(url, {}, this.config)
+            const response: RequestResponse = await axios.post(url, {'':''}, this.config)
             await this.printStatus(response.data.result)
         } catch (error: any) {
             let message: string
