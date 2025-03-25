@@ -1,13 +1,13 @@
 export interface User {
-    username: string;
-    password: string;
+    username?: string;
+    password?: string;
 }
 
 export interface AppProps extends User {
     instance: string;
-    apikey: string;
-    keyid: string;
-    hmacsecret: string;
+    apikey?: string;
+    keyid?: string;
+    hmacsecret?: string;
 }
 
 export interface ErrorResult {
