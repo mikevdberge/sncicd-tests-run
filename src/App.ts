@@ -58,10 +58,8 @@ export default class App {
             password: props.password,
         }
         this.apikey = props.apikey
-
         this.hmacsecret = props.hmacsecret
         this.keyid = props.keyid
-        //this.hmactoken = ''
 
         // Generating the ServiceNow HMAC header value for GET requests
         if (this.hmacsecret) {
@@ -83,7 +81,6 @@ export default class App {
             }
         }
         if (this.hmactoken) {
-
             this.config = {
                 headers: {
                     'x-sn-hmac-signature-256': this.hmactoken,
@@ -91,7 +88,7 @@ export default class App {
             }
         }
         // if no API Key or HMAC Token is provided we set the basic authentication property
-        if (!this.apikey || !this.hmactoken){
+        if (!this.apikey && !this.hmactoken){
             this.config.auth = this.user;
         }
 
