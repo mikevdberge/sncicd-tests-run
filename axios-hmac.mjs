@@ -1,5 +1,8 @@
 // node axios-hmac.mjs -i ingcd -s 2x35kgbzhc9a9zm0pknis79sd0oh9bvo6mnm -k MyHMACSecret
 // node axios-hmac.mjs -i dev285185 -s 2x35kgbzhc9a9zm0pknis79sd0oh9bvo6mnm -k HMAC_Key
+// node axios-hmac.mjs -i cicdazure1 -s 2x35kgbzhc9a9zm0pknis79sd0oh9bvo6mnm -k HMAC_Secret
+
+
 import crypto from 'node:crypto'
 import axios from 'axios';
 import * as tunnel from 'tunnel';
