@@ -215,7 +215,9 @@ export default class App {
     async getTestResults(url: string): Promise<void> {
         const {
             data: { result },
-        }: RequestResponse = await axios.get(url, this.config)
+        //}: RequestResponse = await axios.get(url, this.config)
+        }: RequestResponse = await axios.get(url, {    
+        data: this.body})
         if (+result.status === ResponseStatus.Successful) {
             core.info(this.makeGreenString('success'))
             core.info('Link to results is: ' + result.links.results.url)
