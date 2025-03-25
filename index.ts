@@ -9,7 +9,7 @@ export const run = (): void => {
     let instance
     try {
         const errors: string[] = []
-        const { nowUsername = '', nowPassword = '', nowApikey = '', nowInstallInstance = '', nowFullInstance = '' } = process.env
+        const { nowUsername = '', nowPassword = '', nowApikey = '', nowHMACSecret = '', nowKeyID = '', nowInstallInstance = '', nowFullInstance = '' } = process.env
 
         if (!nowApikey) {
             if (!nowUsername) {
@@ -35,6 +35,8 @@ export const run = (): void => {
                 username: nowUsername,
                 password: nowPassword,
                 apikey: nowApikey,
+                hmacsecret: nowHMACSecret,
+                keyid: nowKeyID
             }
             const app = new App(props)
 
