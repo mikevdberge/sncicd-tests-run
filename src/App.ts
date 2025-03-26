@@ -75,25 +75,26 @@ export default class App {
 
         this.config = {}
         if (this.apikey) {
-            this.config = {
-                headers: {
-                    'x-sn-apikey': this.apikey,
-                }
-            }
+            // this.config = {
+            //     headers: {
+            //         'x-sn-apikey': this.apikey,
+            //     }
+            // }
             axios.defaults.headers.common['x-sn-apikey'] = this.apikey;            
         }
         console.log('Token: ' + this.hmactoken)
         if (this.hmactoken) {
-            this.config = {
-                headers: {
-                    'x-sn-hmac-signature-256': this.hmactoken,
-                }
-            }
+            // this.config = {
+            //     headers: {
+            //         'x-sn-hmac-signature-256': this.hmactoken,
+            //     }
+            // }
             axios.defaults.headers.common['x-sn-hmac-signature-256'] = this.hmactoken;            
         }
         // if no API Key or HMAC Token is provided we set the basic authentication property
         if (!this.apikey && !this.hmactoken){
-            this.config.auth = this.user;
+            //this.config.auth = this.user;
+            axios.defaults.auth = this.user; 
         }
 
     }
