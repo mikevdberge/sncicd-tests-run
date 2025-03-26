@@ -2,6 +2,7 @@ import * as core from '@actions/core'
 import axios from 'axios';
 import crypto from 'node:crypto'
 
+
 import {
     RequestResult,
     AppProps,
@@ -61,9 +62,11 @@ export default class App {
         this.apikey = props.apikey
         this.hmacsecret = props.hmacsecret
         this.keyid = props.keyid
+
+        // Creating a dummy body for creating the HMAC on the body even if POST or GET methods do not require a body
         this.body = '{"":""}' 
 
-        // Generating the ServiceNow HMAC header value for GET requests
+        // Generating the ServiceNow HMAC header value for GET or POST requests
         if (this.hmacsecret) {
             const token = this.hmac(this.body, this.hmacsecret)
             this.hmactoken = 'KEYID='+this.keyid+',SIGNATURE='+token
@@ -82,7 +85,7 @@ export default class App {
             // }
             axios.defaults.headers.common['x-sn-apikey'] = this.apikey;            
         }
-        console.log('Token: ' + this.hmactoken)
+
         if (this.hmactoken) {
             // this.config = {
             //     headers: {
@@ -94,7 +97,10 @@ export default class App {
         // if no API Key or HMAC Token is provided we set the basic authentication property
         if (!this.apikey && !this.hmactoken){
             //this.config.auth = this.user;
-            axios.defaults.auth = this.user; 
+            //axios.defaults.auth = this.user; 
+            
+            var auth = 'Basic ' + Buffer.from(this.user.username + ':' + this.user.password).toString('base64');
+            axios.defaults.headers.common['Authorization'] = auth ;
         }
 
     }
